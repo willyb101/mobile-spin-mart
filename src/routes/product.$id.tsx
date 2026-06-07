@@ -98,7 +98,7 @@ function ProductPage() {
           <div className="mt-8">
             <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Specifications</h3>
             <dl className="mt-3 divide-y divide-border rounded-xl border border-border">
-              {product.specs.map((s) => (
+              {product.specs.map((s: { label: string; value: string }) => (
                 <div key={s.label} className="flex justify-between px-4 py-3 text-sm">
                   <dt className="text-muted-foreground">{s.label}</dt>
                   <dd className="font-medium">{s.value}</dd>
