@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Heart } from "lucide-react";
 import type { Product } from "@/lib/products";
+import { formatPrice } from "@/lib/currency";
 import { useStore } from "@/lib/store";
 
 export function PhoneVisual({ product, className = "h-44" }: { product: Product; className?: string }) {
