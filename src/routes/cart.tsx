@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Minus, Plus, Trash2, Tag } from "lucide-react";
 import { useState } from "react";
 import { PhoneVisual } from "@/components/PhoneCard";
+import { formatPrice } from "@/lib/currency";
 import { cartTotals, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/cart")({

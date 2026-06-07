@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Heart, ShoppingCart, ShieldCheck, Truck, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { PhoneCard, PhoneVisual } from "@/components/PhoneCard";
+import { formatPrice } from "@/lib/currency";
 import { getProduct, related } from "@/lib/products";
 import { useStore } from "@/lib/store";
 

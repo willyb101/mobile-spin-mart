@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PhoneCard } from "@/components/PhoneCard";
+import { formatPrice } from "@/lib/currency";
 import { brands, oses, products, ramOptions, storageOptions } from "@/lib/products";
 
 export const Route = createFileRoute("/shop")({

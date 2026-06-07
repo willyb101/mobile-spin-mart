@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, Gift, ShieldCheck, Sparkles, Truck, Zap } from "lucide-react";
 import { PhoneCard, PhoneVisual } from "@/components/PhoneCard";
+import { formatPrice } from "@/lib/currency";
 import { products } from "@/lib/products";
 
 export const Route = createFileRoute("/")({

@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
 import { useState } from "react";
+import { formatPrice } from "@/lib/currency";
 import { cartTotals, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/checkout")({
