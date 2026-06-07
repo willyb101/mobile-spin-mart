@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PhoneCard } from "@/components/PhoneCard";
+import { formatPrice } from "@/lib/currency";
 import { brands, oses, products, ramOptions, storageOptions } from "@/lib/products";
 
 export const Route = createFileRoute("/shop")({
@@ -21,7 +22,7 @@ function Shop() {
   const [os, setOs] = useState<string[]>([]);
   const [ram, setRam] = useState<number[]>([]);
   const [storage, setStorage] = useState<number[]>([]);
-  const [maxPrice, setMaxPrice] = useState(1500);
+  const [maxPrice, setMaxPrice] = useState(35000);
   const [sort, setSort] = useState<Sort>("featured");
 
   const filtered = useMemo(() => {
@@ -62,11 +63,11 @@ function Shop() {
           <FilterGroup label="Storage (GB)" options={storageOptions.map(String)} value={storage.map(String)} onChange={(v) => setStorage(v.map(Number))} />
           <div>
             <label className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Max price: <span className="text-primary">${maxPrice}</span>
+              Max price: <span className="text-primary">{formatPrice(maxPrice)}</span>
             </label>
             <input
               type="range"
-              min={200} max={1500} step={50}
+              min={5000} max={35000} step={1000}
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
               className="mt-2 w-full accent-primary"

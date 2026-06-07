@@ -55,7 +55,7 @@ function Admin() {
 
 function Overview({ couponsCount }: { couponsCount: number }) {
   const stats = [
-    { label: "Revenue", value: "$148,392", icon: DollarSign, delta: "+12.4%" },
+    { label: "Revenue", value: "K3,709,800", icon: DollarSign, delta: "+12.4%" },
     { label: "Orders", value: "1,247", icon: ShoppingBag, delta: "+8.1%" },
     { label: "Customers", value: "892", icon: Users, delta: "+5.6%" },
     { label: "Inventory", value: `${products.reduce((s, p) => s + p.stock, 0)} units`, icon: Package, delta: "" },
@@ -110,7 +110,7 @@ function ProductsTable() {
       rows={products.map((p) => [
         <span key="n" className="font-medium">{p.name}</span>,
         p.brand,
-        `$${p.price}`,
+        `K${p.price.toLocaleString("en-ZM")}`,
         <span key="s" className={p.stock < 15 ? "text-accent" : "text-primary"}>{p.stock}</span>,
         `★ ${p.rating}`,
       ])}
@@ -120,10 +120,10 @@ function ProductsTable() {
 
 function OrdersTable() {
   const orders = [
-    { id: "#10421", customer: "M. Roberts", total: "$1,099", status: "Shipped" },
-    { id: "#10420", customer: "D. Singh",   total: "$799",   status: "Processing" },
-    { id: "#10419", customer: "J. Kim",     total: "$449",   status: "Delivered" },
-    { id: "#10418", customer: "A. Chen",    total: "$1,299", status: "Pending" },
+    { id: "#10421", customer: "M. Roberts", total: "K27,999", status: "Shipped" },
+    { id: "#10420", customer: "D. Singh",   total: "K19,999", status: "Processing" },
+    { id: "#10419", customer: "J. Kim",     total: "K11,249", status: "Delivered" },
+    { id: "#10418", customer: "A. Chen",    total: "K32,499", status: "Pending" },
   ];
   return (
     <Table
@@ -140,9 +140,9 @@ function OrdersTable() {
 
 function CustomersTable() {
   const customers = [
-    { name: "Maya Roberts", email: "maya@example.com", orders: 4, spent: "$3,290" },
-    { name: "Dev Singh",    email: "dev@example.com",  orders: 2, spent: "$1,598" },
-    { name: "Jules Kim",    email: "jules@example.com",orders: 6, spent: "$4,120" },
+    { name: "Maya Roberts", email: "maya@example.com", orders: 4, spent: "K82,250" },
+    { name: "Dev Singh",    email: "dev@example.com",  orders: 2, spent: "K39,998" },
+    { name: "Jules Kim",    email: "jules@example.com",orders: 6, spent: "K103,000" },
   ];
   return (
     <Table

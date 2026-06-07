@@ -62,7 +62,7 @@ export const cartTotals = (cart: CartItem[], coupon?: Coupon | null) => {
   const lines = cartLines(cart);
   const subtotal = lines.reduce((s, l) => s + l.product.price * l.qty, 0);
   let discount = 0;
-  let shipping = subtotal > 0 ? 15 : 0;
+  let shipping = subtotal > 0 && subtotal < 1250 ? 375 : 0;
   if (coupon?.kind === "percent") discount = (subtotal * coupon.value) / 100;
   if (coupon?.kind === "shipping") shipping = 0;
   const taxable = Math.max(0, subtotal - discount);

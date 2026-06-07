@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Minus, Plus, Trash2, Tag } from "lucide-react";
 import { useState } from "react";
 import { PhoneVisual } from "@/components/PhoneCard";
+import { formatPrice } from "@/lib/currency";
 import { cartTotals, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/cart")({
@@ -52,7 +53,7 @@ function Cart() {
                 <span className="w-8 text-center text-sm">{line.qty}</span>
                 <button onClick={() => setQty(line.id, line.qty + 1)} className="p-2"><Plus className="h-3 w-3" /></button>
               </div>
-              <p className="w-20 text-right text-sm font-semibold">${line.product.price * line.qty}</p>
+              <p className="w-20 text-right text-sm font-semibold">{formatPrice(line.product.price * line.qty)}</p>
               <button onClick={() => removeFromCart(line.id)} className="rounded-md p-2 text-muted-foreground hover:text-destructive">
                 <Trash2 className="h-4 w-4" />
               </button>
@@ -63,12 +64,12 @@ function Cart() {
         <aside className="glass h-fit rounded-2xl p-5">
           <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Order summary</h3>
           <dl className="mt-4 space-y-2 text-sm">
-            <Row label="Subtotal" value={`$${totals.subtotal.toFixed(2)}`} />
-            {totals.discount > 0 && <Row label={`Discount${applied ? ` (${applied.code})` : ""}`} value={`−$${totals.discount.toFixed(2)}`} accent />}
-            <Row label="Shipping" value={totals.shipping === 0 ? "Free" : `$${totals.shipping.toFixed(2)}`} />
-            <Row label="Tax (8%)" value={`$${totals.tax.toFixed(2)}`} />
+            <Row label="Subtotal" value={formatPrice(totals.subtotal)} />
+            {totals.discount > 0 && <Row label={`Discount${applied ? ` (${applied.code})` : ""}`} value={`−${formatPrice(totals.discount)}`} accent />}
+            <Row label="Shipping" value={totals.shipping === 0 ? "Free" : formatPrice(totals.shipping)} />
+            <Row label="Tax (8%)" value={formatPrice(totals.tax)} />
             <div className="my-3 border-t border-border" />
-            <Row label="Total" value={`$${totals.total.toFixed(2)}`} bold />
+            <Row label="Total" value={formatPrice(totals.total)} bold />
           </dl>
 
           <div className="mt-5">

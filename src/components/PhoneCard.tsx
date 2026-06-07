@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Heart } from "lucide-react";
 import type { Product } from "@/lib/products";
+import { formatPrice } from "@/lib/currency";
 import { useStore } from "@/lib/store";
 
 export function PhoneVisual({ product, className = "h-44" }: { product: Product; className?: string }) {
@@ -76,9 +77,9 @@ export function PhoneCard({ product }: { product: Product }) {
       </div>
       <div className="mt-2 flex items-center justify-between">
         <div className="flex items-baseline gap-2">
-          <span className="text-base font-bold neon-text">${product.price}</span>
+          <span className="text-base font-bold neon-text">{formatPrice(product.price)}</span>
           {product.oldPrice && (
-            <span className="text-xs text-muted-foreground line-through">${product.oldPrice}</span>
+            <span className="text-xs text-muted-foreground line-through">{formatPrice(product.oldPrice)}</span>
           )}
         </div>
         <span className="text-[11px] text-muted-foreground">★ {product.rating}</span>

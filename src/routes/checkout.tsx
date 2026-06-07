@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
 import { useState } from "react";
+import { formatPrice } from "@/lib/currency";
 import { cartTotals, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/checkout")({
@@ -86,17 +87,17 @@ function Checkout() {
             {totals.lines.map((l) => (
               <li key={l.id} className="flex justify-between">
                 <span className="text-muted-foreground">{l.product.name} × {l.qty}</span>
-                <span>${l.product.price * l.qty}</span>
+                <span>{formatPrice(l.product.price * l.qty)}</span>
               </li>
             ))}
           </ul>
           <div className="my-3 border-t border-border" />
           <dl className="space-y-1 text-sm">
-            <div className="flex justify-between"><dt className="text-muted-foreground">Subtotal</dt><dd>${totals.subtotal.toFixed(2)}</dd></div>
-            {totals.discount > 0 && <div className="flex justify-between text-accent"><dt>Discount</dt><dd>−${totals.discount.toFixed(2)}</dd></div>}
-            <div className="flex justify-between"><dt className="text-muted-foreground">Shipping</dt><dd>{totals.shipping === 0 ? "Free" : `$${totals.shipping.toFixed(2)}`}</dd></div>
-            <div className="flex justify-between"><dt className="text-muted-foreground">Tax</dt><dd>${totals.tax.toFixed(2)}</dd></div>
-            <div className="mt-2 flex justify-between border-t border-border pt-2"><dt className="font-bold">Total</dt><dd className="text-lg font-bold neon-text">${totals.total.toFixed(2)}</dd></div>
+            <div className="flex justify-between"><dt className="text-muted-foreground">Subtotal</dt><dd>{formatPrice(totals.subtotal)}</dd></div>
+            {totals.discount > 0 && <div className="flex justify-between text-accent"><dt>Discount</dt><dd>−{formatPrice(totals.discount)}</dd></div>}
+            <div className="flex justify-between"><dt className="text-muted-foreground">Shipping</dt><dd>{totals.shipping === 0 ? "Free" : formatPrice(totals.shipping)}</dd></div>
+            <div className="flex justify-between"><dt className="text-muted-foreground">Tax</dt><dd>{formatPrice(totals.tax)}</dd></div>
+            <div className="mt-2 flex justify-between border-t border-border pt-2"><dt className="font-bold">Total</dt><dd className="text-lg font-bold neon-text">{formatPrice(totals.total)}</dd></div>
           </dl>
           <button className="btn-neon mt-5 w-full hover:btn-neon-hover">Place order</button>
         </aside>

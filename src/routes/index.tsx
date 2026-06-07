@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, Gift, ShieldCheck, Sparkles, Truck, Zap } from "lucide-react";
 import { PhoneCard, PhoneVisual } from "@/components/PhoneCard";
+import { formatPrice } from "@/lib/currency";
 import { products } from "@/lib/products";
 
 export const Route = createFileRoute("/")({
@@ -91,7 +92,7 @@ function Home() {
                 <p className="text-sm font-semibold">{hero.name}</p>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold neon-text">${hero.price}</p>
+                <p className="text-lg font-bold neon-text">{formatPrice(hero.price)}</p>
                 <Link to="/product/$id" params={{ id: hero.id }} className="text-xs text-primary hover:underline">
                   View →
                 </Link>
@@ -193,7 +194,7 @@ function Grid({ items }: { items: typeof products }) {
 }
 
 const testimonials = [
-  { name: "Maya R.", role: "Photographer", quote: "Pixel 8 Pro arrived next day, perfectly packaged. The Spin & Win coupon saved me $90." },
+  { name: "Maya R.", role: "Photographer", quote: "Pixel 8 Pro arrived next day, perfectly packaged. The Spin & Win coupon saved me K2,250." },
   { name: "Dev S.", role: "Engineer", quote: "Cleanest checkout I've used. Specs are exactly what I needed to compare before buying." },
   { name: "Jules K.", role: "Designer", quote: "Beautiful site, but more importantly — the prices actually beat the carriers." },
 ];
