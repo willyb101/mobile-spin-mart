@@ -64,8 +64,8 @@ function ProductPage() {
             </span>
           </div>
           <div className="mt-5 flex items-baseline gap-3">
-            <span className="text-4xl font-bold neon-text">${product.price}</span>
-            {product.oldPrice && <span className="text-base text-muted-foreground line-through">${product.oldPrice}</span>}
+            <span className="text-4xl font-bold neon-text">{formatPrice(product.price)}</span>
+            {product.oldPrice && <span className="text-base text-muted-foreground line-through">{formatPrice(product.oldPrice)}</span>}
           </div>
           <p className="mt-4 text-sm text-muted-foreground">{product.description}</p>
 
@@ -91,7 +91,7 @@ function ProductPage() {
           </div>
 
           <div className="mt-6 grid grid-cols-3 gap-3 text-xs text-muted-foreground">
-            <div className="glass rounded-lg p-3"><Truck className="mb-1 h-4 w-4 text-primary" />Free shipping over $50</div>
+          <div className="glass rounded-lg p-3"><Truck className="mb-1 h-4 w-4 text-primary" />Free shipping over K1,250</div>
             <div className="glass rounded-lg p-3"><RotateCcw className="mb-1 h-4 w-4 text-primary" />30-day returns</div>
             <div className="glass rounded-lg p-3"><ShieldCheck className="mb-1 h-4 w-4 text-primary" />2-year warranty</div>
           </div>
