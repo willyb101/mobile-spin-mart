@@ -194,7 +194,7 @@ function Grid({ items }: { items: typeof products }) {
 }
 
 const testimonials = [
-  { name: "Maya R.", role: "Photographer", quote: "Pixel 8 Pro arrived next day, perfectly packaged. The Spin & Win coupon saved me $90." },
+  { name: "Maya R.", role: "Photographer", quote: "Pixel 8 Pro arrived next day, perfectly packaged. The Spin & Win coupon saved me K2,250." },
   { name: "Dev S.", role: "Engineer", quote: "Cleanest checkout I've used. Specs are exactly what I needed to compare before buying." },
   { name: "Jules K.", role: "Designer", quote: "Beautiful site, but more importantly — the prices actually beat the carriers." },
 ];
