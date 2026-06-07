@@ -92,7 +92,7 @@ function Home() {
                 <p className="text-sm font-semibold">{hero.name}</p>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold neon-text">${hero.price}</p>
+                <p className="text-lg font-bold neon-text">{formatPrice(hero.price)}</p>
                 <Link to="/product/$id" params={{ id: hero.id }} className="text-xs text-primary hover:underline">
                   View →
                 </Link>
