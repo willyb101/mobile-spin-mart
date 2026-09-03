@@ -33,7 +33,7 @@ function Home() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="panel notch-tr flex min-h-[440px] flex-col justify-between p-8 md:p-12"
+          className="panel notch-tr flex min-h-[440px] md:min-h-[520px] flex-col justify-between p-8 md:p-12"
         >
           <div>
             <p className="mono-label text-primary-foreground/80">Smartphone Store + Lab</p>
@@ -58,7 +58,7 @@ function Home() {
           className="relative"
         >
           <Link to="/product/$id" params={{ id: hero.id }} className="block">
-            <PhoneVisual product={hero} className="h-[440px] rounded-3xl md:h-full" />
+            <PhoneVisual product={hero} className="h-[440px] rounded-3xl md:h-[520px]" />
           </Link>
           <div className="glass absolute bottom-5 left-5 right-5 flex items-center justify-between p-4">
             <div>
