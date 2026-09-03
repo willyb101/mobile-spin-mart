@@ -19,7 +19,7 @@ function Login() {
       <div className="glass w-full rounded-2xl p-7">
         <h1 className="text-2xl font-bold">{mode === "login" ? "Welcome back" : "Create account"}</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          {mode === "login" ? "Sign in to spin, save, and check out faster." : "Join SmartPhone Hub in seconds."}
+          {mode === "login" ? "Sign in to save devices and check out faster." : "Join SmartPhone Hub in seconds."}
         </p>
         <form
           onSubmit={(e) => {

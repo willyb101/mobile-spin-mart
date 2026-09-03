@@ -80,7 +80,7 @@ function Cart() {
               <input
                 value={code}
                 onChange={(e) => setCode(e.target.value.toUpperCase())}
-                placeholder="SPINXXXX"
+                placeholder="PROMO-CODE"
                 className="flex-1 rounded-md border border-border bg-card px-3 py-2 text-sm outline-none focus:border-primary"
               />
               <button

@@ -45,7 +45,7 @@ function Account() {
         <h2 className="text-2xl font-bold">Your coupons</h2>
         {coupons.length === 0 ? (
           <div className="glass mt-4 rounded-2xl p-8 text-center text-sm text-muted-foreground">
-            No coupons yet. <Link to="/spin" className="text-primary hover:underline">Try Spin & Win</Link> to earn one.
+            No coupons yet. Promo codes you receive will appear here.
           </div>
         ) : (
           <div className="mt-4 grid gap-3 md:grid-cols-3">

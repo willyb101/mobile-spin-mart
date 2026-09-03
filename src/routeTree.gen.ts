@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SpinRouteImport } from './routes/spin'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as CheckoutRouteImport } from './routes/checkout'
@@ -19,11 +18,6 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
 
-const SpinRoute = SpinRouteImport.update({
-  id: '/spin',
-  path: '/spin',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
@@ -73,7 +67,6 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/login': typeof LoginRoute
   '/shop': typeof ShopRoute
-  '/spin': typeof SpinRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesByTo {
@@ -84,7 +77,6 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/login': typeof LoginRoute
   '/shop': typeof ShopRoute
-  '/spin': typeof SpinRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesById {
@@ -96,7 +88,6 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/login': typeof LoginRoute
   '/shop': typeof ShopRoute
-  '/spin': typeof SpinRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRouteTypes {
@@ -109,7 +100,6 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/login'
     | '/shop'
-    | '/spin'
     | '/product/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -120,7 +110,6 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/login'
     | '/shop'
-    | '/spin'
     | '/product/$id'
   id:
     | '__root__'
@@ -131,7 +120,6 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/login'
     | '/shop'
-    | '/spin'
     | '/product/$id'
   fileRoutesById: FileRoutesById
 }
@@ -143,19 +131,11 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   LoginRoute: typeof LoginRoute
   ShopRoute: typeof ShopRoute
-  SpinRoute: typeof SpinRoute
   ProductIdRoute: typeof ProductIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/spin': {
-      id: '/spin'
-      path: '/spin'
-      fullPath: '/spin'
-      preLoaderRoute: typeof SpinRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/shop': {
       id: '/shop'
       path: '/shop'
@@ -223,7 +203,6 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   LoginRoute: LoginRoute,
   ShopRoute: ShopRoute,
-  SpinRoute: SpinRoute,
   ProductIdRoute: ProductIdRoute,
 }
 export const routeTree = rootRouteImport

@@ -59,7 +59,7 @@ function Overview({ couponsCount }: { couponsCount: number }) {
     { label: "Orders", value: "1,247", icon: ShoppingBag, delta: "+8.1%" },
     { label: "Customers", value: "892", icon: Users, delta: "+5.6%" },
     { label: "Inventory", value: `${products.reduce((s, p) => s + p.stock, 0)} units`, icon: Package, delta: "" },
-    { label: "Spins today", value: "324", icon: Activity, delta: "+22%" },
+    { label: "Visitors today", value: "324", icon: Activity, delta: "+22%" },
     { label: "Coupons issued", value: String(couponsCount + 218), icon: Gift, delta: "" },
   ];
   return (
@@ -82,7 +82,7 @@ function Overview({ couponsCount }: { couponsCount: number }) {
           <Sparkline data={[12, 18, 14, 22, 28, 24, 32]} />
         </div>
         <div className="glass rounded-2xl p-5">
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Spin wheel — last 7 days</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Traffic — last 7 days</h3>
           <Sparkline data={[80, 120, 105, 160, 200, 240, 324]} color="var(--accent)" />
         </div>
       </div>
@@ -180,7 +180,7 @@ function Security() {
     { time: "14 min ago", type: "Failed login",   user: "unknown",        ip: "45.91.22.10",  level: "warn" },
     { time: "1 h ago",    type: "Coupon issued",  user: "maya@example.com", ip: "10.0.0.2",   level: "ok" },
     { time: "3 h ago",    type: "Role changed",   user: "admin@hub.com",  ip: "192.168.1.4",  level: "warn" },
-    { time: "8 h ago",    type: "Suspicious spin",user: "bot42@x.com",    ip: "199.66.4.4",   level: "alert" },
+    { time: "8 h ago",    type: "Suspicious login",user: "bot42@x.com",   ip: "199.66.4.4",   level: "alert" },
   ];
   return (
     <>
