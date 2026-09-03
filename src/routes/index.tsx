@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, Gift, ShieldCheck, Sparkles, Truck, Zap } from "lucide-react";
+import { ArrowRight, ShieldCheck, Truck, Zap } from "lucide-react";
 import { PhoneCard, PhoneVisual } from "@/components/PhoneCard";
 import { formatPrice } from "@/lib/currency";
 import { products } from "@/lib/products";
@@ -8,8 +8,12 @@ import { products } from "@/lib/products";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SmartPhone Hub — Flagship phones, neon-fast deals" },
-      { name: "description", content: "Shop the latest iPhone, Galaxy, Pixel and more. Spin & Win exclusive coupons every 24 hours." },
+      { title: "SmartPhone Hub — Flagship phones, delivered in Zambia" },
+      { name: "description", content: "Shop the latest iPhone, Galaxy and Pixel flagships with Kwacha pricing, free delivery and secure checkout." },
+      { property: "og:title", content: "SmartPhone Hub — Flagship phones, delivered in Zambia" },
+      { property: "og:description", content: "Curated flagship smartphones and accessories with Kwacha pricing and secure checkout." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -23,111 +27,117 @@ function Home() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative mx-auto max-w-7xl px-5 pt-10 md:pt-16">
-        <div className="grid items-center gap-8 md:grid-cols-2">
+      {/* HERO — notched gradient panel + product visual */}
+      <section className="mx-auto grid max-w-7xl gap-5 px-5 pt-6 md:grid-cols-2 md:pt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="panel notch-tr flex min-h-[440px] flex-col justify-between p-8 md:p-12"
+        >
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs"
-            >
-              <Sparkles className="h-3 w-3 text-primary" />
-              <span className="text-muted-foreground">New flagships in stock</span>
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.05 }}
-              className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl"
-            >
-              Tomorrow's <br />
-              <span className="neon-text">smartphones</span>, <br />
-              today.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.25 }}
-              className="mt-5 max-w-md text-base text-muted-foreground"
-            >
-              Curated flagship phones, accessories, and a Spin & Win wheel that drops a fresh
-              discount in your wallet every 24 hours.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35 }}
-              className="mt-7 flex flex-wrap gap-3"
-            >
-              <Link to="/shop" className="btn-neon inline-flex items-center gap-2 hover:btn-neon-hover">
-                Shop now <ArrowRight className="h-4 w-4" />
+            <p className="mono-label text-primary-foreground/80">Smartphone Store + Lab</p>
+            <h1 className="mt-10 text-6xl leading-[0.92] md:text-7xl">
+              Let&apos;s get
+              <br />
+              <span className="font-black">mobile</span>
+            </h1>
+            <p className="mono-label mt-8 max-w-xs leading-relaxed text-primary-foreground/85">
+              Our new flagship line-up has landed in Lusaka
+            </p>
+          </div>
+          <Link to="/shop" className="btn-neon mt-10 w-fit hover:btn-neon-hover">
+            Shop now
+          </Link>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7 }}
+          className="relative"
+        >
+          <Link to="/product/$id" params={{ id: hero.id }} className="block">
+            <PhoneVisual product={hero} className="h-[440px] rounded-3xl md:h-full" />
+          </Link>
+          <div className="glass absolute bottom-5 left-5 right-5 flex items-center justify-between p-4">
+            <div>
+              <p className="mono-label text-muted-foreground">{hero.brand}</p>
+              <p className="text-sm font-semibold">{hero.name}</p>
+            </div>
+            <div className="text-right">
+              <p className="text-lg font-bold neon-text">{formatPrice(hero.price)}</p>
+              <Link to="/product/$id" params={{ id: hero.id }} className="mono-label text-primary hover:underline">
+                View
               </Link>
-              <Link to="/spin" className="btn-ghost inline-flex items-center gap-2">
-                <Gift className="h-4 w-4 text-accent" /> Spin & Win
-              </Link>
-            </motion.div>
-            <div className="mt-10 grid max-w-md grid-cols-3 gap-4 text-xs text-muted-foreground">
-              <div className="flex items-center gap-2"><Truck className="h-4 w-4 text-primary" /> Free shipping</div>
-              <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" /> Secure pay</div>
-              <div className="flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> 24h dispatch</div>
             </div>
           </div>
+        </motion.div>
+      </section>
+
+      {/* STATEMENT + PAIN POINT CARDS */}
+      <section className="mx-auto mt-24 max-w-5xl px-5 text-center">
+        <h2 className="text-4xl leading-tight md:text-6xl">
+          Buying a phone doesn&apos;t have to be difficult.
+          <br />
+          <span className="font-black">We&apos;re here to help.</span>
+        </h2>
+      </section>
+
+      <section className="mx-auto mt-14 grid max-w-7xl gap-5 px-5 md:grid-cols-3">
+        {valueProps.map((v, i) => (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="relative"
+            key={v.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.08 }}
+            className="panel p-7"
           >
-            <div className="absolute inset-0 -z-10 blur-3xl opacity-50"
-              style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--neon) 50%, transparent), transparent 70%)" }}
-            />
-            <Link to="/product/$id" params={{ id: hero.id }} className="block">
-              <PhoneVisual product={hero} className="h-[480px]" />
-            </Link>
-            <div className="glass absolute bottom-5 left-5 right-5 flex items-center justify-between rounded-xl p-4">
-              <div>
-                <p className="text-[11px] uppercase tracking-widest text-muted-foreground">{hero.brand}</p>
-                <p className="text-sm font-semibold">{hero.name}</p>
-              </div>
-              <div className="text-right">
-                <p className="text-lg font-bold neon-text">{formatPrice(hero.price)}</p>
-                <Link to="/product/$id" params={{ id: hero.id }} className="text-xs text-primary hover:underline">
-                  View →
-                </Link>
-              </div>
-            </div>
+            <h3 className="mono-label !text-sm font-bold text-primary-foreground">{v.title}</h3>
+            <p className="mono-label mt-5 leading-relaxed text-primary-foreground/85">{v.body}</p>
           </motion.div>
+        ))}
+      </section>
+
+      {/* GRADIENT BAND — "Grow your presence" analogue */}
+      <section className="relative mt-24 overflow-hidden py-24" style={{ background: "var(--gradient-band)" }}>
+        <div className="mx-auto max-w-3xl px-5 text-center">
+          <h2 className="text-5xl leading-[0.95] md:text-6xl">
+            Upgrade your
+            <br />
+            <span className="font-black">everyday.</span>
+          </h2>
+          <p className="mono-label mx-auto mt-6 max-w-md leading-relaxed">
+            We&apos;ll put the right device in your hand — flagships, mid-rangers and accessories, priced in Kwacha.
+          </p>
         </div>
       </section>
 
-      {/* FEATURED */}
+      {/* WHAT WE OFFER */}
+      <section className="mx-auto mt-24 max-w-7xl px-5">
+        <h2 className="text-5xl md:text-6xl">What we offer</h2>
+        <div className="mt-10 grid items-center gap-10 md:grid-cols-2">
+          <div className="space-y-5">
+            {offers.map((o) => (
+              <div key={o} className="pill-grad px-8 py-4 text-center text-sm text-primary-foreground">
+                {o}
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {featured.slice(0, 2).map((p) => (
+              <PhoneCard key={p.id} product={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Section title="Featured" subtitle="Hand-picked flagships" link="/shop">
         <Grid items={featured} />
       </Section>
 
-      {/* PROMO */}
-      <section className="mx-auto mt-20 max-w-7xl px-5">
-        <div className="glass neon-border relative overflow-hidden rounded-3xl p-8 md:p-12">
-          <div className="grid items-center gap-6 md:grid-cols-[1fr_auto]">
-            <div>
-              <p className="text-xs uppercase tracking-widest text-primary">Limited drop</p>
-              <h3 className="mt-2 text-3xl font-bold md:text-4xl">
-                Spin the wheel. <span className="neon-text">Win up to 20% off.</span>
-              </h3>
-              <p className="mt-2 max-w-md text-sm text-muted-foreground">
-                One spin every 24 hours. Coupons land instantly in your account.
-              </p>
-            </div>
-            <Link to="/spin" className="btn-neon inline-flex items-center gap-2 hover:btn-neon-hover">
-              <Gift className="h-4 w-4" /> Try your luck
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <Section title="Latest arrivals" subtitle="Fresh in the lineup" link="/shop">
+      <Section title="Latest arrivals" subtitle="Fresh in the line-up" link="/shop">
         <Grid items={latest} />
       </Section>
 
@@ -135,52 +145,72 @@ function Home() {
         <Grid items={best} />
       </Section>
 
+      {/* PROMISES */}
+      <section className="mx-auto mt-24 max-w-7xl px-5">
+        <div className="grid gap-4 md:grid-cols-3">
+          <Promise icon={Truck} title="Free delivery" body="Countrywide dispatch within 24 hours on orders over K1,250." />
+          <Promise icon={ShieldCheck} title="Secure checkout" body="Encrypted payments and 30-day returns on every device." />
+          <Promise icon={Zap} title="Real warranty" body="12-month manufacturer warranty handled locally in Lusaka." />
+        </div>
+      </section>
+
       {/* TESTIMONIALS */}
-      <section className="mx-auto mt-20 max-w-7xl px-5">
-        <h2 className="text-3xl font-bold tracking-tight">What customers say</h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <section className="mx-auto mt-24 max-w-7xl px-5">
+        <h2 className="text-5xl md:text-6xl">What customers say</h2>
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
           {testimonials.map((t) => (
-            <div key={t.name} className="glass rounded-2xl p-5">
-              <p className="text-sm leading-relaxed text-foreground/90">"{t.quote}"</p>
-              <p className="mt-4 text-xs text-muted-foreground">— {t.name}, {t.role}</p>
+            <div key={t.name} className="glass p-6">
+              <p className="mono-label leading-relaxed text-foreground/90">&quot;{t.quote}&quot;</p>
+              <p className="mono-label mt-5 text-muted-foreground">— {t.name}, {t.role}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* NEWSLETTER */}
-      <section className="mx-auto mt-20 max-w-3xl px-5 text-center">
-        <h3 className="text-3xl font-bold">Get device drops in your inbox</h3>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Weekly digest. No spam. Unsubscribe anytime.
-        </p>
-        <form onSubmit={(e) => e.preventDefault()} className="mx-auto mt-6 flex max-w-md gap-2">
+      <section className="mx-auto mt-24 max-w-3xl px-5 text-center">
+        <h2 className="text-4xl md:text-5xl">Get device drops in your inbox</h2>
+        <p className="mono-label mt-4 text-muted-foreground">Weekly digest. No spam. Unsubscribe anytime.</p>
+        <form onSubmit={(e) => e.preventDefault()} className="mx-auto mt-7 flex max-w-md gap-2">
           <input
             type="email"
             required
             placeholder="you@example.com"
-            className="w-full rounded-md border border-border bg-card px-4 py-3 text-sm outline-none focus:border-primary"
+            className="w-full rounded-full border border-border bg-card px-5 py-3 text-sm outline-none focus:border-primary"
           />
-          <button className="btn-neon">Subscribe</button>
+          <button className="btn-neon hover:btn-neon-hover">Join</button>
         </form>
+        <Link to="/shop" className="mono-label mt-8 inline-flex items-center gap-2 text-primary hover:underline">
+          Browse the catalogue <ArrowRight className="h-3.5 w-3.5" />
+        </Link>
       </section>
     </>
   );
 }
 
+function Promise({ icon: Icon, title, body }: { icon: typeof Truck; title: string; body: string }) {
+  return (
+    <div className="glass p-6">
+      <Icon className="h-5 w-5 text-accent" />
+      <h3 className="mono-label mt-4 !text-sm font-bold">{title}</h3>
+      <p className="mono-label mt-2 leading-relaxed text-muted-foreground">{body}</p>
+    </div>
+  );
+}
+
 function Section({ title, subtitle, link, children }: { title: string; subtitle?: string; link?: string; children: React.ReactNode }) {
   return (
-    <section className="mx-auto mt-20 max-w-7xl px-5">
+    <section className="mx-auto mt-24 max-w-7xl px-5">
       <div className="flex items-end justify-between">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">{title}</h2>
-          {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
+          <h2 className="text-4xl md:text-5xl">{title}</h2>
+          {subtitle && <p className="mono-label mt-2 text-muted-foreground">{subtitle}</p>}
         </div>
         {link && (
-          <Link to={link} className="text-sm text-primary hover:underline">View all →</Link>
+          <Link to={link} className="mono-label text-primary hover:underline">View all →</Link>
         )}
       </div>
-      <div className="mt-6">{children}</div>
+      <div className="mt-8">{children}</div>
     </section>
   );
 }
@@ -193,8 +223,25 @@ function Grid({ items }: { items: typeof products }) {
   );
 }
 
+const valueProps = [
+  {
+    title: "Getting lost in the specs?",
+    body: "We translate RAM, chipsets and camera sensors into plain language so you buy the phone that fits your life.",
+  },
+  {
+    title: "Tired of grey imports?",
+    body: "Every device is sourced sealed, warranty-backed and tested before it leaves our Lusaka counter.",
+  },
+  {
+    title: "Feeling left in the dark?",
+    body: "Live order tracking, transparent Kwacha pricing and a real human on the other end of the line.",
+  },
+];
+
+const offers = ["Flagship smartphones", "Accessories & audio", "Trade-in & upgrades"];
+
 const testimonials = [
-  { name: "Maya R.", role: "Photographer", quote: "Pixel 8 Pro arrived next day, perfectly packaged. The Spin & Win coupon saved me K2,250." },
+  { name: "Maya R.", role: "Photographer", quote: "Pixel 8 Pro arrived next day, perfectly packaged. Best price I found in Lusaka." },
   { name: "Dev S.", role: "Engineer", quote: "Cleanest checkout I've used. Specs are exactly what I needed to compare before buying." },
   { name: "Jules K.", role: "Designer", quote: "Beautiful site, but more importantly — the prices actually beat the carriers." },
 ];
