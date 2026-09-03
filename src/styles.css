@@ -33,36 +33,44 @@
   --color-neon-2: var(--neon-2);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
-  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Archivo", "Helvetica Neue", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
-  --radius: 0.75rem;
-  /* Bold tech / neon dark */
-  --background: oklch(0.16 0.02 270);
-  --foreground: oklch(0.97 0.01 250);
-  --surface: oklch(0.20 0.025 270);
-  --surface-2: oklch(0.24 0.03 270);
-  --card: oklch(0.20 0.025 270);
-  --card-foreground: oklch(0.97 0.01 250);
-  --popover: oklch(0.20 0.025 270);
-  --popover-foreground: oklch(0.97 0.01 250);
-  --primary: oklch(0.78 0.21 165);      /* electric mint */
-  --primary-foreground: oklch(0.14 0.02 270);
-  --secondary: oklch(0.28 0.04 270);
-  --secondary-foreground: oklch(0.97 0.01 250);
-  --muted: oklch(0.24 0.03 270);
-  --muted-foreground: oklch(0.70 0.03 260);
-  --accent: oklch(0.70 0.25 320);       /* magenta */
-  --accent-foreground: oklch(0.14 0.02 270);
-  --destructive: oklch(0.65 0.24 25);
+  --radius: 1.5rem;
+  /* Editorial blue-on-black */
+  --background: oklch(0.06 0.005 260);
+  --foreground: oklch(0.98 0.005 250);
+  --surface: oklch(0.14 0.04 262);
+  --surface-2: oklch(0.20 0.06 262);
+  --card: oklch(0.13 0.035 262);
+  --card-foreground: oklch(0.98 0.005 250);
+  --popover: oklch(0.13 0.035 262);
+  --popover-foreground: oklch(0.98 0.005 250);
+  --primary: oklch(0.58 0.23 258);        /* electric blue */
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.22 0.06 262);
+  --secondary-foreground: oklch(0.98 0.005 250);
+  --muted: oklch(0.18 0.04 262);
+  --muted-foreground: oklch(0.75 0.03 255);
+  --accent: oklch(0.80 0.11 250);         /* sky */
+  --accent-foreground: oklch(0.14 0.03 262);
+  --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.30 0.03 270);
-  --input: oklch(0.28 0.03 270);
-  --ring: oklch(0.78 0.21 165);
-  --neon: oklch(0.78 0.21 165);
-  --neon-2: oklch(0.70 0.25 320);
+  --border: oklch(0.26 0.05 262);
+  --input: oklch(0.22 0.05 262);
+  --ring: oklch(0.58 0.23 258);
+  --neon: oklch(0.58 0.23 258);
+  --neon-2: oklch(0.84 0.09 245);
+  --gradient-panel: linear-gradient(180deg,
+      color-mix(in oklab, var(--background) 88%, var(--primary)) 0%,
+      var(--primary) 62%,
+      color-mix(in oklab, var(--neon-2) 85%, white) 100%);
+  --gradient-band: linear-gradient(180deg,
+      var(--background) 0%,
+      color-mix(in oklab, var(--primary) 80%, var(--background)) 45%,
+      color-mix(in oklab, var(--neon-2) 70%, white) 100%);
 }
 
 .dark { color-scheme: dark; }
@@ -71,52 +79,85 @@
   html { color-scheme: dark; }
   * { border-color: var(--color-border); }
   body {
-    background: radial-gradient(ellipse at top, color-mix(in oklab, var(--neon-2) 12%, transparent), transparent 60%),
-                radial-gradient(ellipse at bottom right, color-mix(in oklab, var(--neon) 14%, transparent), transparent 55%),
-                var(--color-background);
+    background: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     min-height: 100vh;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.035em; font-weight: 700; }
 }
 
 @utility neon-text {
-  background-image: linear-gradient(120deg, var(--neon), var(--neon-2));
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  color: var(--neon-2);
+}
+
+@utility mono-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
 }
 
 @utility neon-border {
-  border: 1px solid color-mix(in oklab, var(--neon) 50%, transparent);
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--neon) 20%, transparent),
-              0 0 30px -6px color-mix(in oklab, var(--neon) 40%, transparent);
+  border: 1px solid color-mix(in oklab, var(--neon-2) 45%, transparent);
+  box-shadow: 0 0 40px -12px color-mix(in oklab, var(--primary) 70%, transparent);
 }
 
 @utility glass {
-  background: color-mix(in oklab, var(--surface) 70%, transparent);
-  backdrop-filter: blur(14px) saturate(140%);
-  border: 1px solid color-mix(in oklab, white 6%, transparent);
+  background: color-mix(in oklab, var(--surface) 65%, transparent);
+  backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid color-mix(in oklab, white 8%, transparent);
+  border-radius: var(--radius);
+}
+
+/* Gradient glass panel like the reference layout */
+@utility panel {
+  background: var(--gradient-panel);
+  border: 1px solid color-mix(in oklab, white 18%, transparent);
+  border-radius: var(--radius);
+  box-shadow: 0 40px 80px -40px color-mix(in oklab, var(--primary) 70%, transparent);
+}
+
+/* Notched corner card (top-right cut) from the reference hero */
+@utility notch-tr {
+  clip-path: polygon(0 6%, 0 100%, 100% 100%, 100% 22%, 78% 0, 6% 0);
 }
 
 @utility btn-neon {
-  background: linear-gradient(120deg, var(--neon), var(--neon-2));
+  display: inline-block;
+  background: var(--primary);
   color: var(--primary-foreground);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
   font-weight: 600;
-  border-radius: var(--radius);
-  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  padding: 0.75rem 1.6rem;
   transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
-  box-shadow: 0 10px 30px -10px color-mix(in oklab, var(--neon) 60%, transparent);
+  box-shadow: 0 12px 30px -12px color-mix(in oklab, var(--primary) 80%, transparent);
 }
-@utility btn-neon-hover { filter: brightness(1.1); transform: translateY(-1px); }
+@utility btn-neon-hover { filter: brightness(1.12); transform: translateY(-1px); }
 
 @utility btn-ghost {
-  border: 1px solid color-mix(in oklab, white 10%, transparent);
-  background: color-mix(in oklab, white 3%, transparent);
+  display: inline-block;
+  border: 1px solid color-mix(in oklab, white 16%, transparent);
+  background: color-mix(in oklab, white 4%, transparent);
   color: var(--color-foreground);
-  border-radius: var(--radius);
-  padding: 0.65rem 1.2rem;
-  font-weight: 500;
+  border-radius: 999px;
+  padding: 0.72rem 1.5rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
   transition: background .15s ease;
+}
+
+@utility pill-grad {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 90%, black), color-mix(in oklab, var(--neon-2) 80%, white));
+  border: 1px solid color-mix(in oklab, white 30%, transparent);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
