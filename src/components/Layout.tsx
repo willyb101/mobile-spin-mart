@@ -36,7 +36,6 @@ export function Header() {
         <nav className="hidden items-center gap-6 md:flex">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/shop">Shop</NavLink>
-          <NavLink to="/spin">Spin & Win</NavLink>
           <NavLink to="/admin">Admin</NavLink>
         </nav>
         <div className="flex items-center gap-1">
@@ -101,7 +100,6 @@ export function Footer() {
             <li><Link to="/shop" className="hover:text-primary">All phones</Link></li>
             <li><Link to="/shop" className="hover:text-primary">New arrivals</Link></li>
             <li><Link to="/shop" className="hover:text-primary">Bestsellers</Link></li>
-            <li><Link to="/spin" className="hover:text-primary">Spin & Win</Link></li>
           </ul>
         </div>
         <div>

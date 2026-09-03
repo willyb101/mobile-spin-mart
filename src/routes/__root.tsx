@@ -79,10 +79,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "SmartPhone Hub — Flagship phones & accessories" },
-      { name: "description", content: "Shop the latest smartphones with secure checkout and exclusive Spin & Win discounts." },
+      { name: "description", content: "Shop the latest smartphones in Zambia with Kwacha pricing and secure checkout." },
       { name: "author", content: "SmartPhone Hub" },
       { property: "og:title", content: "SmartPhone Hub" },
-      { property: "og:description", content: "Shop the latest smartphones with secure checkout and exclusive Spin & Win discounts." },
+      { property: "og:description", content: "Shop the latest smartphones in Zambia with Kwacha pricing and secure checkout." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -107,7 +107,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
         <HeadContent />
